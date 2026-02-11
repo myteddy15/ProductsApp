@@ -22,7 +22,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         
         
-        fetchData(from: "https://dummyjson.com/products") { result in
+        fetchData(from: "https://dummyjson.com/products") { [weak self] result in
+            guard let self else { return }
             switch result {
             case.success(let models):
                 self.models = models
